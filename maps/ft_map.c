@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:03:01 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/15 09:03:15 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/16 09:12:03 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,46 @@ void		ft_spawn(t_temp *temp, char position)
 	}
 }
 
+int			ft_limit(char **matrix, int i)
+{
+	int		prev;
+	int		forw;
+	int		curr;
+	
+	curr = ft_strlen(matrix[i]);
+	if (i != 0 && matrix[i + 1] != NULL)
+	{
+		prev = ft_strlen(matrix[i - 1]);
+		forw = ft_strlen(matrix[i + 1]);
+		if (prev < curr || forw < curr)
+		{
+			if (prev < forw)
+				return (prev);
+			else
+				return (forw);
+		}
+	}
+	return (curr);	
+}
+
 int			ft_map_check(char **matrix)
 {
 	int		i;
 	int		j;
+	int		limit;
 
 	i = 0;
 	while (matrix[i])
 	{
 		j = 0;
+		limit = ft_limit(matrix, i);
 		while (matrix[i][j])
 		{
+			if (j >= limit)
+			{
+				if (matrix[i][j] != '1' && matrix[i][j] != ' ')
+					return (0);
+			}
 			if (i == 0 || matrix[i + 1] == NULL || j == 0 || matrix[i][j + 1] == '\0')
 			{
 				if (matrix[i][j] != '1' && matrix[i][j] != ' ')

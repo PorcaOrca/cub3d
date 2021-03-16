@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:19:03 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/15 09:20:29 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/16 09:54:15 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,13 @@ void	ft_img_fill(t_param *param)
 	i_x = 0;
 	while (i_x < winX)
 	{
+		trgb = c_trgb;
 		i_y = 0;
-		while (i_y < (winY / 2))
-		{
-			ft_img_pixel_put(param->img, i_x, i_y, c_trgb);
-			i_y++;
-		}
-		i_x++;
-	}
-	i_x = 0;
-	while (i_x < winX)
-	{
-		i_y = winY / 2;
 		while (i_y < winY)
 		{
-			ft_img_pixel_put(param->img, i_x, i_y, f_trgb);
+			if (i_y > (winY / 2))
+				trgb = f_trgb;
+			ft_img_pixel_put(param->img, i_x, i_y, trgb);
 			i_y++;
 		}
 		i_x++;

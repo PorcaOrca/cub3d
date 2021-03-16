@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:29:25 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/08 15:03:00 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/16 09:51:55 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_img	*ft_img_init(t_param *param)
 	if (!img)
 		return (NULL);
 	img->ptr = mlx_new_image(param->mlx, winX, winY);
-	img->addr = mlx_get_data_addr(img->ptr, &img->bxp, &img->sizel, &img->endian);
+	img->addr = mlx_get_data_addr(img->ptr, &img->bxp,
+									&img->sizel, &img->endian);
 	return (img);
 }

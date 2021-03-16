@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 08:56:29 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/11 10:57:25 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/16 09:27:40 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_fill_px(t_param *param)
 {
-	wl_data->txtpos = (wl_data->ystart - winY / 2 + wl_data->lineh / 2) * wl_data->step;
+	wl_data->txtpos = (wl_data->ystart - winY / 2 + wl_data->lineh / 2)
+						* wl_data->step;
 	while (wl_data->ystart < wl_data->yend)
 		{
 			txtY = (int)wl_data->txtpos;

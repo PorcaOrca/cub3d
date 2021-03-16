@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:22:52 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/15 11:35:04 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/16 09:18:27 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_param	*ft_start(char *str)
 	if (!ft_cub_init(temp_cub, str))
 	{
 		free(temp_cub);
-		write(1, "wrong .cub configuration", 24);
+		write(1, "wrong .cub configuration\n", 25);
+		debug();
 		return (NULL);
 	}
 	if (!(param = ft_init(temp_cub)))
@@ -39,10 +40,10 @@ int		main(int argc, char *argv[])
 {
 	t_param		*param;
 
-	if (!(param = ft_start(argv[1])) && argc != 2)
+	if (!(param = ft_start(argv[1])) || argc != 2)
 	{
 		//error handling
-		return (1);
+		exit (0);
 	}
 	mlx_hook(param->win, 3, 1L << 1, ft_key_release, param);
 	mlx_hook(param->win, 2, 1L << 0, ft_key_press, param);
@@ -50,4 +51,5 @@ int		main(int argc, char *argv[])
 	if(param->mlx)
 		mlx_loop(param->mlx);
 	ft_close(param);
+	return (0);
 }
