@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:29:25 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/16 09:51:55 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/17 10:25:29 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_img	*ft_img_init(t_param *param)
 {
 	t_img	*img;
-	
-	img = (t_img *) malloc(sizeof(t_img));
+
+	img = (t_img *)malloc(sizeof(t_img));
 	if (!img)
 		return (NULL);
 	img->ptr = mlx_new_image(param->mlx, winX, winY);

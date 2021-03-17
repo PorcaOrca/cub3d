@@ -6,13 +6,13 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:57:41 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/16 09:08:32 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/17 11:18:26 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../akira2021.h"
 
-void		ft_temp_init(t_temp *temp)
+void	ft_temp_init(t_temp *temp)
 {
 	temp->sprite_q = 0;
 	temp->floor_color = 0xFFFFFFFF;
@@ -31,22 +31,10 @@ void		ft_temp_init(t_temp *temp)
 	temp->width = 0;
 	temp->height = 0;
 	temp->temp_map = NULL;
+	temp->error = 0;
 }
 
-void	ft_free_matrix(char **matrix)
-{
-	int		i;
-
-	i = 0;
-	while (matrix[i])
-	{
-		free(matrix[i]);
-		i++;
-	}
-	free(matrix);
-}
-
-int			ft_valid_cub(t_temp *temp)
+int		ft_valid_cub(t_temp *temp)
 {
 	if ((unsigned int)temp->floor_color == 0xFFFFFFFF ||
 		(unsigned int)temp->ceiling_color == 0xFFFFFFFF ||
@@ -59,7 +47,8 @@ int			ft_valid_cub(t_temp *temp)
 		temp->position[1] == 0 ||
 		temp->width == 0 ||
 		temp->height == 0 ||
-		temp->temp_map == NULL)
+		temp->temp_map == NULL ||
+		temp->error > 0)
 		return (0);
 	return (1);
 }
@@ -80,31 +69,39 @@ void	ft_clean(t_temp *temp)
 		ft_free_matrix(temp->temp_map);
 }
 
-int			ft_cub_init(t_temp *temp, char *mapfile)
+char	*ft_element_parse(t_temp *temp, int fd)
 {
-	int		fd;
-	char	*str;
 	int		ret;
+	char	*str;
 
 	ret = 1;
-	ft_temp_init(temp);
-	fd = open(mapfile, O_RDONLY);
-	if (fd < 0)
-		return (0);
 	while (ret)
 	{
 		ret = get_next_line(fd, &str);
 		if (ret < 0)
 		{
 			close(fd);
-			return (0);
+			return (NULL);
 		}
 		ft_element_select(temp, str);
 		if (*str == '1')
-			break;
+			break ;
 		free(str);
 	}
-	temp->temp_map = ft_map(temp, fd, str);
+	return (str);
+}
+
+int		ft_cub_init(t_temp *temp, char *mapfile)
+{
+	int		fd;
+	char	*str;
+
+	ft_temp_init(temp);
+	fd = open(mapfile, O_RDONLY);
+	if (fd < 0)
+		return (0);
+	if ((str = ft_element_parse(temp, fd)))
+		temp->temp_map = ft_map(temp, fd, str);
 	close(fd);
 	if (!ft_valid_cub(temp))
 	{
@@ -113,21 +110,3 @@ int			ft_cub_init(t_temp *temp, char *mapfile)
 	}
 	return (1);
 }
-
-
-/*
-int		main(void)
-{
-	int		i;
-	t_temp 	temp;
-	
-	i = 0;
-	ft_cub_init(&temp, "./maps/map_files/map_trip.cub");
-	while (temp.temp_map[i])
-	{
-		debugstr(temp.temp_map[i]);
-		i++;
-	}
-}
-
-*/

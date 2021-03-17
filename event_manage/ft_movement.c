@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 09:16:21 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/16 10:37:04 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/17 10:13:50 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,32 +99,6 @@ void		ft_strafe_left(t_param *param, double coll)
 		Wmap[(int)(posY - (planeY * movspeed) + coll)][(int)(posX - coll)]
 		!= '1')
 		posY -= (planeY * movspeed);
-}
-
-void		ft_rotate_right(t_param *param)
-{
-	double		tempdirX;
-	double		tempplaneX;
-
-	tempdirX = dirX;
-	tempplaneX = planeX;
-	dirX = (tempdirX * cos(-rotspeed)) - (dirY * sin(-rotspeed));
-	dirY = (tempdirX * sin(-rotspeed)) + (dirY * cos(-rotspeed));
-	planeX = (tempplaneX * cos(-rotspeed)) - (planeY * sin(-rotspeed));
-	planeY = (tempplaneX * sin(-rotspeed)) + (planeY * cos(-rotspeed));
-}
-
-void		ft_rotate_left(t_param *param)
-{
-	double		tempdirX;
-	double		tempplaneX;
-	
-	tempdirX = dirX;
-	tempplaneX = planeX;
-	dirX = (dirX * cos(rotspeed)) - (dirY * sin(rotspeed));
-	dirY = (tempdirX * sin(rotspeed)) + (dirY * cos(rotspeed));
-	planeX = (planeX * cos(rotspeed)) - (planeY * sin(rotspeed));
-	planeY = (tempplaneX * sin(rotspeed)) + (planeY * cos(rotspeed));
 }
 
 void		ft_movement(t_param *param)

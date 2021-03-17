@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sprite_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lspazzin <lspazzin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 09:09:57 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/05 15:50:19 by lspazzin         ###   ########.fr       */
+/*   Updated: 2021/03/17 10:24:43 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../akira2021.h"
 
-void	ft_sprite_sort(int	*order, double *dist, int q)
+void	ft_sprite_sort(int *order, double *dist, int q)
 {
 	int		i;
 	int		j;

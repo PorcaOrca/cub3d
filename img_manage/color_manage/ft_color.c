@@ -6,14 +6,14 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 18:21:49 by lodovico          #+#    #+#             */
-/*   Updated: 2021/02/24 16:55:15 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/17 10:54:12 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_color(double shade, int r, int g, int b)
 {
 	if (r < 0 || r > 255 || b < 0 || b > 255 || g < 0 || g > 255)
-		return (-2147483648);
+		return (0xFFFFFFFF);
 	r -= r * shade;
 	g -= g * shade;
 	b -= b * shade;

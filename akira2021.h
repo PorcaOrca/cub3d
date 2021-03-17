@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 10:32:58 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/15 11:36:37 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/17 11:15:37 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,7 @@ typedef struct		s_temp
 	double	t_dirY;
 	double	t_planeX;
 	double	t_planeY;
+	int		error;
 }					t_temp;
 
 // image management prototipes
@@ -238,7 +239,7 @@ void		ft_fill_line(t_param *param);
 void		ft_fill_px(t_param *param);
 void		ft_fill_column(t_param *param);
 void		ft_calc_column(t_param *param);
-void		ft_DDA(t_param *param);
+void		ft_dda(t_param *param);
 void		ft_step(t_param *param);
 void		ft_deltadist(t_wl_data *data);
 void		ft_img_wall(t_param *param);
@@ -253,7 +254,7 @@ void		ft_free_matrix(char **matrix);
 int			ft_valid_cub(t_temp *temp);
 void		ft_clean(t_temp *temp);
 int			ft_resolution(t_temp *temp, char *str);
-int			ft_back_color(char **matrix);
+int			ft_back_color(char *str);
 int			ft_background(char *str);
 void		ft_clean(t_temp *temp);
 void		ft_element_select(t_temp *temp, char *str);
@@ -261,6 +262,11 @@ void		ft_spawn(t_temp *temp, char position);
 int			ft_map_check(char **matrix);
 void		ft_map_fill(char **matrix, t_temp *temp, t_list *line, int map_size);
 char		**ft_map(t_temp *temp, int fd, char *str);
+int			ft_char_check(char **matrix, int i, int j);
+int			ft_limit(char **matrix, int i);
+void		ft_map_obj(char **matrix, int i, int j, t_temp *temp);
+char		**ft_lst_to_matrix(t_temp *temp, t_list *line);
+
 
 
 // texture management prototipes
@@ -272,15 +278,33 @@ int			ft_get_txtcolor(t_img *img, int x, int y);
 // event management prototipes
 
 void		ft_close(t_param *param);
+void		ft_close_img(void * mlx_ptr, t_txt *txt);
 int			ft_new_frame(t_param *param);
 void		ft_movement(t_param *param);
 int			ft_key_release(int keycode, t_param *param);
 int			ft_key_press(int keycode, t_param *param);
+void		ft_forward(t_param *param, double coll);
+void		ft_backward(t_param *param, double coll);
+void		ft_strafe_right(t_param *param, double coll);
+void		ft_strafe_left(t_param *param, double coll);
+void		ft_movement(t_param *param);
+void		ft_rotate_right(t_param *param);
+void		ft_rotate_left(t_param *param);
 
 // main prototipes
 
 t_param		*ft_init(t_temp *temp);
 int			ft_cub_init(t_temp *temp, char *mapfile);
+void		ft_param_clean(t_param *param);
+int			ft_param_alloc(t_param *param, t_temp *temp);
+void		ft_server_clean(t_param *param);
+int			ft_server_alloc(t_param *param, t_temp *temp);
+void		ft_server_init(t_param *param);
+int			ft_vectors_init(t_param *param, t_temp *temp);
+void		ft_sp_arr_init(t_param *param);
+void		ft_param_init(t_param *param, t_temp *temp);
+void		ft_settings_init(t_param *param, t_temp *temp);
+
 
 // utils prototipes
 int			get_next_line(int fd, char **line);
