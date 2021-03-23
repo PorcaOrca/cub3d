@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:19:03 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/16 09:54:15 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/23 10:25:44 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	ft_img_fill(t_param *param)
 {
-	i_x = 0;
-	while (i_x < winX)
+	param->common_data->iterator_x = 0;
+	while (param->common_data->iterator_x < param->settings->window_size_x)
 	{
-		trgb = c_trgb;
-		i_y = 0;
-		while (i_y < winY)
+		param->common_data->color_trgb = param->settings->ceiling_trgb;
+		param->common_data->iterator_y = 0;
+		while (param->common_data->iterator_y < param->settings->window_size_y)
 		{
-			if (i_y > (winY / 2))
-				trgb = f_trgb;
-			ft_img_pixel_put(param->img, i_x, i_y, trgb);
-			i_y++;
+			if (param->common_data->iterator_y > (param->settings->window_size_y / 2))
+				param->common_data->color_trgb = param->settings->floor_trgb;
+			ft_img_pixel_put(param->img, param->common_data->iterator_x, param->common_data->iterator_y, param->common_data->color_trgb);
+			param->common_data->iterator_y++;
 		}
-		i_x++;
+		param->common_data->iterator_x++;
 	}
 	ft_img_wall(param);
 	ft_sprite(param);

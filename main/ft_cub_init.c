@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:57:41 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/22 09:29:31 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/23 10:41:15 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	ft_temp_init(t_temp *temp)
 	temp->sprite_q = 0;
 	temp->floor_color = 0xFFFFFFFF;
 	temp->ceiling_color = 0xFFFFFFFF;
-	temp->t_dirX = 0;
-	temp->t_dirY = 0;
-	temp->t_planeX = 0;
-	temp->t_planeY = 0;
+	temp->t_dirx = 0;
+	temp->t_diry = 0;
+	temp->t_planex = 0;
+	temp->t_planey = 0;
 	temp->texture1 = NULL;
 	temp->texture2 = NULL;
 	temp->texture3 = NULL;
 	temp->texture4 = NULL;
-	temp->txt_sprite = NULL;
+	temp->sprite = NULL;
 	temp->position[0] = 0;
 	temp->position[1] = 0;
 	temp->width = 0;
@@ -42,7 +42,7 @@ int		ft_valid_cub(t_temp *temp)
 		temp->texture2 == NULL ||
 		temp->texture3 == NULL ||
 		temp->texture4 == NULL ||
-		temp->txt_sprite == NULL ||
+		temp->sprite == NULL ||
 		temp->position[0] == 0 ||
 		temp->position[1] == 0 ||
 		temp->width == 0 ||
@@ -63,8 +63,8 @@ void	ft_clean(t_temp *temp)
 		free(temp->texture3);
 	if (temp->texture4)
 		free(temp->texture4);
-	if (temp->txt_sprite)
-		free(temp->txt_sprite);
+	if (temp->sprite)
+		free(temp->sprite);
 	if (temp->temp_map)
 		ft_free_matrix(temp->temp_map);
 }

@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 10:11:54 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/16 09:48:35 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/23 10:43:51 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,65 +14,65 @@
 
 void		ft_spr_pxl(t_param *param, int i)
 {
-	sp_data->d = (i_y * 256) - (winY * 128) + (sp_data->spriteH * 128);
-	txtY = ((sp_data->d
-			* sp_data->sp_arr[sp_data->order[i]].s_txt->texture_High)
-			/ sp_data->spriteH) / 256;
-	if (txtY < 0)
-		txtY = -txtY;
-	if (txtX < 0)
-		txtX = -txtX;
-	trgb = ft_get_txtcolor(sp_data->sp_arr[sp_data->order[i]].s_txt->txt_data,
-							txtX, txtY);
-	if (trgb != 0x00000000)
-		ft_img_pixel_put(param->img, sp_data->stripe, i_y, trgb);
+	param->sprite_data->d = (param->common_data->iterator_y * 256) - (param->settings->window_size_y * 128) + (param->sprite_data->spriteh * 128);
+	param->common_data->texture_y = ((param->sprite_data->d
+			* param->sprite_data->sp_arr[param->sprite_data->order[i]].s_txt->texture_high)
+			/ param->sprite_data->spriteh) / 256;
+	if (param->common_data->texture_y < 0)
+		param->common_data->texture_y = -param->common_data->texture_y;
+	if (param->common_data->texture_x < 0)
+		param->common_data->texture_x = -param->common_data->texture_x;
+	param->common_data->color_trgb = ft_get_txtcolor(param->sprite_data->sp_arr[param->sprite_data->order[i]].s_txt->txt_data,
+							param->common_data->texture_x, param->common_data->texture_y);
+	if (param->common_data->color_trgb != 0x00000000)
+		ft_img_pixel_put(param->img, param->sprite_data->stripe, param->common_data->iterator_y, param->common_data->color_trgb);
 }
 
 void		ft_spr_to_frame(t_param *param, int i)
 {
-	sp_data->stripe = sp_data->spstartX;
-	while (sp_data->stripe < sp_data->spendX)
+	param->sprite_data->stripe = param->sprite_data->spstartx;
+	while (param->sprite_data->stripe < param->sprite_data->spendx)
 	{
-		txtX = (int)(256 * (sp_data->stripe -
-				(-sp_data->spriteW / 2 + sp_data->spscreenX))
-				* sp_data->sp_arr[sp_data->order[i]].s_txt->texture_Width
-				/ sp_data->spriteW) / 256;
-		if (sp_data->transY > 0 &&
-			sp_data->stripe > 0 &&
-			sp_data->stripe < winX &&
-			sp_data->transY < sp_data->zbuffer[sp_data->stripe])
+		param->common_data->texture_x = (int)(256 * (param->sprite_data->stripe -
+				(-param->sprite_data->spritew / 2 + param->sprite_data->spscreenx))
+				* param->sprite_data->sp_arr[param->sprite_data->order[i]].s_txt->texture_width
+				/ param->sprite_data->spritew) / 256;
+		if (param->sprite_data->transy > 0 &&
+			param->sprite_data->stripe > 0 &&
+			param->sprite_data->stripe < param->settings->window_size_x &&
+			param->sprite_data->transy < param->sprite_data->zbuffer[param->sprite_data->stripe])
 		{
-			i_y = sp_data->spstartY;
-			while (i_y < sp_data->spendY)
+			param->common_data->iterator_y = param->sprite_data->spstarty;
+			while (param->common_data->iterator_y < param->sprite_data->spendy)
 			{
 				ft_spr_pxl(param, i);
-				i_y++;
+				param->common_data->iterator_y++;
 			}
 		}
-		sp_data->stripe++;
+		param->sprite_data->stripe++;
 	}
 }
 
 void	ft_spr_dim(t_param *param)
 {
-	sp_data->spriteH = (int)(winY / sp_data->transY);
-	if (sp_data->spriteH < 0)
-		sp_data->spriteH = -sp_data->spriteH;
-	sp_data->spstartY = -sp_data->spriteH / 2 + winY / 2;
-	if (sp_data->spstartY < 0)
-		sp_data->spstartY = 0;
-	sp_data->spendY = sp_data->spriteH / 2 + winY / 2;
-	if (sp_data->spendY >= winY)
-		sp_data->spendY = winY - 1;
-	sp_data->spriteW = (int)(winY / sp_data->transY);
-	if (sp_data->spriteW < 0)
-		sp_data->spriteW = - sp_data->spriteW;
-	sp_data->spstartX = -sp_data->spriteW / 2 + sp_data->spscreenX;
-	if (sp_data->spstartX < 0)
-		sp_data->spstartX = 0;
-	sp_data->spendX = sp_data->spriteW / 2 + sp_data->spscreenX;
-	if (sp_data->spendX >= winX)
-		sp_data->spendX = winX - 1;
+	param->sprite_data->spriteh = (int)(param->settings->window_size_y / param->sprite_data->transy);
+	if (param->sprite_data->spriteh < 0)
+		param->sprite_data->spriteh = -param->sprite_data->spriteh;
+	param->sprite_data->spstarty = -param->sprite_data->spriteh / 2 + param->settings->window_size_y / 2;
+	if (param->sprite_data->spstarty < 0)
+		param->sprite_data->spstarty = 0;
+	param->sprite_data->spendy = param->sprite_data->spriteh / 2 + param->settings->window_size_y / 2;
+	if (param->sprite_data->spendy >= param->settings->window_size_y)
+		param->sprite_data->spendy = param->settings->window_size_y - 1;
+	param->sprite_data->spritew = (int)(param->settings->window_size_y / param->sprite_data->transy);
+	if (param->sprite_data->spritew < 0)
+		param->sprite_data->spritew = - param->sprite_data->spritew;
+	param->sprite_data->spstartx = -param->sprite_data->spritew / 2 + param->sprite_data->spscreenx;
+	if (param->sprite_data->spstartx < 0)
+		param->sprite_data->spstartx = 0;
+	param->sprite_data->spendx = param->sprite_data->spritew / 2 + param->sprite_data->spscreenx;
+	if (param->sprite_data->spendx >= param->settings->window_size_x)
+		param->sprite_data->spendx = param->settings->window_size_x - 1;
 }
 
 void	ft_sprite_order(t_param *param)
@@ -82,14 +82,14 @@ void	ft_sprite_order(t_param *param)
 	i = 0;
 	while (i < param->sprite_num)
 	{
-		sp_data->order[i] = i;
-		sp_data->dist[i] = ((posX - sp_data->sp_arr[i].s_pos_x)
-							* (posX - sp_data->sp_arr[i].s_pos_x)
-							+ (posY - sp_data->sp_arr[i].s_pos_y)
-							* (posY - sp_data->sp_arr[i].s_pos_y));
+		param->sprite_data->order[i] = i;
+		param->sprite_data->dist[i] = ((param->vectors->pos->x - param->sprite_data->sp_arr[i].s_pos_x)
+							* (param->vectors->pos->x - param->sprite_data->sp_arr[i].s_pos_x)
+							+ (param->vectors->pos->y - param->sprite_data->sp_arr[i].s_pos_y)
+							* (param->vectors->pos->y - param->sprite_data->sp_arr[i].s_pos_y));
 		i++;
 	}
-	ft_sprite_sort(sp_data->order, sp_data->dist, param->sprite_num);
+	ft_sprite_sort(param->sprite_data->order, param->sprite_data->dist, param->sprite_num);
 }
 
 void	ft_sprite(t_param *param)
@@ -100,15 +100,15 @@ void	ft_sprite(t_param *param)
 	ft_sprite_order(param);
 	while (i < param->sprite_num)
 	{
-		sp_data->spriteX = sp_data->sp_arr[sp_data->order[i]].s_pos_x - posX;
-		sp_data->spriteY = sp_data->sp_arr[sp_data->order[i]].s_pos_y - posY;
-		sp_data->invdet = 1 / ((planeX * dirY) - (dirX * planeY));
-		sp_data->transX = sp_data->invdet
-				* ((dirY * sp_data->spriteX) - (dirX * sp_data->spriteY));
-		sp_data->transY = sp_data->invdet
-				* ((-planeY * sp_data->spriteX) + (planeX * sp_data->spriteY));
-		sp_data->spscreenX = (int)((winX / 2)
-				* (1 + (sp_data->transX / sp_data->transY)));
+		param->sprite_data->spritex = param->sprite_data->sp_arr[param->sprite_data->order[i]].s_pos_x - param->vectors->pos->x;
+		param->sprite_data->spritey = param->sprite_data->sp_arr[param->sprite_data->order[i]].s_pos_y - param->vectors->pos->y;
+		param->sprite_data->invdet = 1 / ((param->vectors->plane->x * param->vectors->dir->y) - (param->vectors->dir->x * param->vectors->plane->y));
+		param->sprite_data->transx = param->sprite_data->invdet
+				* ((param->vectors->dir->y * param->sprite_data->spritex) - (param->vectors->dir->x * param->sprite_data->spritey));
+		param->sprite_data->transy = param->sprite_data->invdet
+				* ((-param->vectors->plane->y * param->sprite_data->spritex) + (param->vectors->plane->x * param->sprite_data->spritey));
+		param->sprite_data->spscreenx = (int)((param->settings->window_size_x / 2)
+				* (1 + (param->sprite_data->transx / param->sprite_data->transy)));
 		ft_spr_dim(param);
 		ft_spr_to_frame(param, i);
 		i++;

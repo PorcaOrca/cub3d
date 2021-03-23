@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 10:48:22 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/17 10:16:57 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/23 10:36:53 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ int		ft_key_press(int keycode, t_param *param)
 		param->keys->rt_right = 1;
 	else if ((keycode == 65363 || keycode == 124) && param->keys->rt_left == 0)
 		param->keys->rt_left = 1;
-	debugint(keycode);
 	return (0);
 }

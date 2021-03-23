@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:00:18 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/23 09:31:17 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/23 10:37:16 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,11 +126,9 @@ void		ft_element_select(t_temp *temp, char *str)
 	else if (!ft_strncmp("SO", str, 2))
 		temp->texture4 = ft_txt_wall(str);
 	else if (*str == 'S')
-		temp->txt_sprite = ft_txt_wall(str);
+		temp->sprite = ft_txt_wall(str);
 	else if (*str != '\0')
 	{
 		temp->error++;
-		debugint(temp->error);
-		debugstr(str);
 	}
 }

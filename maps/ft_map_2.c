@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 09:08:14 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/17 09:09:13 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/23 10:41:15 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ void		ft_spawn(t_temp *temp, char position)
 {
 	if (position == 'N')
 	{
-		temp->t_dirY = -1;
-		temp->t_planeX = 0.66;
+		temp->t_diry = -1;
+		temp->t_planex = 0.66;
 	}
 	else if (position == 'S')
 	{
-		temp->t_dirY = 1;
-		temp->t_planeX = -0.66;
+		temp->t_diry = 1;
+		temp->t_planex = -0.66;
 	}
 	else if (position == 'E')
 	{
-		temp->t_dirX = 1;
-		temp->t_planeY = 0.66;
+		temp->t_dirx = 1;
+		temp->t_planey = 0.66;
 	}
 	else if (position == 'W')
 	{
-		temp->t_dirX = -1;
-		temp->t_planeY = -0.66;
+		temp->t_dirx = -1;
+		temp->t_planey = -0.66;
 	}
 }
 

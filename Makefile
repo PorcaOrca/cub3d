@@ -6,12 +6,11 @@
 #    By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/16 10:47:43 by lodovico          #+#    #+#              #
-#    Updated: 2021/03/22 10:57:41 by lodovico         ###   ########.fr        #
+#    Updated: 2021/03/23 12:05:09 by lodovico         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	$(MAIN)\
-			$(DB)\
 			$(EM)\
 			$(IM)\
 			$(TM)\
@@ -38,6 +37,10 @@ IM		=	img_manage/color_manage/ft_color.c\
 EM		=	event_manage/ft_close.c\
 			event_manage/ft_new_frame.c\
 			event_manage/ft_movement.c\
+			event_manage/ft_forward.c\
+			event_manage/ft_backward.c\
+			event_manage/ft_strafe_left.c\
+			event_manage/ft_strafe_right.c\
 			event_manage/ft_key_press.c\
 			event_manage/ft_key_release.c\
 			event_manage/ft_rotate.c
@@ -45,7 +48,8 @@ EM		=	event_manage/ft_close.c\
 MAIN	=	main/ft_akira2021.c\
 			main/ft_init.c\
 			main/ft_init_2.c\
-			main/ft_cub_init.c
+			main/ft_cub_init.c\
+			main/ft_param_clean.c
 
 MAP		=	maps/ft_element_select.c\
 			maps/ft_map.c\
@@ -54,10 +58,6 @@ MAP		=	maps/ft_element_select.c\
 UT		=	utils/ft_get_next_line.c\
 			utils/ft_free_matrix.c\
 			utils/ft_bmp.c
-			
-DB		= 	debuggin/debug.c\
-			debuggin/debugstr.c\
-			debuggin/debugint.c
 
 NAME	=	cub3d
 

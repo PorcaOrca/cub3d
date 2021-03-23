@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 08:56:29 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/17 10:32:30 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/23 10:25:25 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,53 +14,53 @@
 
 void	ft_dda(t_param *param)
 {
-	wl_data->hit = 0;
-	while (wl_data->hit == 0)
+	param->wall_data->hit = 0;
+	while (param->wall_data->hit == 0)
 	{
-		if (wl_data->sidedist.x < wl_data->sidedist.y)
+		if (param->wall_data->sidedist.x < param->wall_data->sidedist.y)
 		{
-			wl_data->sidedist.x += wl_data->deltadist.x;
-			wl_data->mapx += wl_data->stepx;
-			wl_data->side = 0;
+			param->wall_data->sidedist.x += param->wall_data->deltadist.x;
+			param->wall_data->mapx += param->wall_data->stepx;
+			param->wall_data->side = 0;
 		}
 		else
 		{
-			wl_data->sidedist.y += wl_data->deltadist.y;
-			wl_data->mapy += wl_data->stepy;
-			wl_data->side = 1;
+			param->wall_data->sidedist.y += param->wall_data->deltadist.y;
+			param->wall_data->mapy += param->wall_data->stepy;
+			param->wall_data->side = 1;
 		}
-		if (Wmap[wl_data->mapy][wl_data->mapx] == '1')
-			wl_data->hit = 1;
+		if (param->map[param->wall_data->mapy][param->wall_data->mapx] == '1')
+			param->wall_data->hit = 1;
 	}
 }
 
 void	ft_step(t_param *param)
 {
-	if (wl_data->raydir.x < 0)
+	if (param->wall_data->raydir.x < 0)
 	{
-		wl_data->stepx = -1;
-		wl_data->sidedist.x = (posX - wl_data->mapx) * wl_data->deltadist.x;
+		param->wall_data->stepx = -1;
+		param->wall_data->sidedist.x = (param->vectors->pos->x - param->wall_data->mapx) * param->wall_data->deltadist.x;
 	}
 	else
 	{
-		wl_data->stepx = 1;
-		wl_data->sidedist.x = (wl_data->mapx + 1.0 - posX)
-							* wl_data->deltadist.x;
+		param->wall_data->stepx = 1;
+		param->wall_data->sidedist.x = (param->wall_data->mapx + 1.0 - param->vectors->pos->x)
+							* param->wall_data->deltadist.x;
 	}
-	if (wl_data->raydir.y < 0)
+	if (param->wall_data->raydir.y < 0)
 	{
-		wl_data->stepy = -1;
-		wl_data->sidedist.y = (posY - wl_data->mapy) * wl_data->deltadist.y;
+		param->wall_data->stepy = -1;
+		param->wall_data->sidedist.y = (param->vectors->pos->y - param->wall_data->mapy) * param->wall_data->deltadist.y;
 	}
 	else
 	{
-		wl_data->stepy = 1;
-		wl_data->sidedist.y = (wl_data->mapy + 1.0 - posY)
-							* wl_data->deltadist.y;
+		param->wall_data->stepy = 1;
+		param->wall_data->sidedist.y = (param->wall_data->mapy + 1.0 - param->vectors->pos->y)
+							* param->wall_data->deltadist.y;
 	}
 }
 
-void	ft_deltadist(t_wl_data *data)
+void	ft_deltadist(t_wall_data *data)
 {
 	if (data->raydir.y == 0)
 		data->deltadist.x = 0;
@@ -88,40 +88,40 @@ void	ft_deltadist(t_wl_data *data)
 
 t_txt	*ft_txt_select(t_param *param)
 {
-	if (wl_data->side == 0)
+	if (param->wall_data->side == 0)
 	{
-		if (wl_data->raydir.x < 0)
-			return (txt_1);
+		if (param->wall_data->raydir.x < 0)
+			return (param->texture->texture1);
 		else
-			return (txt_3);
+			return (param->texture->texture3);
 	}
-	if (wl_data->side == 1)
+	if (param->wall_data->side == 1)
 	{
-		if (wl_data->raydir.y < 0)
-			return (txt_2);
+		if (param->wall_data->raydir.y < 0)
+			return (param->texture->texture2);
 		else
-			return (txt_4);
+			return (param->texture->texture4);
 	}
 	return (NULL);
 }
 
 void	ft_img_wall(t_param *param)
 {
-	i_x = 0;
-	while (i_x < winX)
+	param->common_data->iterator_x = 0;
+	while (param->common_data->iterator_x < param->settings->window_size_x)
 	{
-		wl_data->camerax = ((2 * i_x) / (double)winX) - 1;
-		wl_data->raydir.x = dirX + (planeX * wl_data->camerax);
-		wl_data->raydir.y = dirY + (planeY * wl_data->camerax);
-		wl_data->mapx = (int)posX;
-		wl_data->mapy = (int)posY;
-		ft_deltadist(wl_data);
+		param->wall_data->camerax = ((2 * param->common_data->iterator_x) / (double)param->settings->window_size_x) - 1;
+		param->wall_data->raydir.x = param->vectors->dir->x + (param->vectors->plane->x * param->wall_data->camerax);
+		param->wall_data->raydir.y = param->vectors->dir->y + (param->vectors->plane->y * param->wall_data->camerax);
+		param->wall_data->mapx = (int)param->vectors->pos->x;
+		param->wall_data->mapy = (int)param->vectors->pos->y;
+		ft_deltadist(param->wall_data);
 		ft_step(param);
 		ft_dda(param);
 		ft_calc_column(param);
-		wl_data->txt = ft_txt_select(param);
+		param->wall_data->txt = ft_txt_select(param);
 		ft_fill_column(param);
-		sp_data->zbuffer[i_x] = wl_data->walldist;
-		i_x++;
+		param->sprite_data->zbuffer[param->common_data->iterator_x] = param->wall_data->walldist;
+		param->common_data->iterator_x++;
 	}
 }

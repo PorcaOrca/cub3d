@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:05:28 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/23 09:29:55 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/23 10:22:06 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void		ft_close_img(void *mlx_ptr, t_txt *txt)
 
 int			ft_close(t_param *param)
 {
-	ft_close_img(param->mlx, txt_1);
-	ft_close_img(param->mlx, txt_2);
-	ft_close_img(param->mlx, txt_3);
-	ft_close_img(param->mlx, txt_4);
-	ft_close_img(param->mlx, txt_spr);
+	ft_close_img(param->mlx, param->texture->texture1);
+	ft_close_img(param->mlx, param->texture->texture2);
+	ft_close_img(param->mlx, param->texture->texture3);
+	ft_close_img(param->mlx, param->texture->texture4);
+	ft_close_img(param->mlx, param->texture->sprite);
 	mlx_clear_window(param->mlx, param->win);
 	mlx_destroy_window(param->mlx, param->win);
 	ft_free_matrix(param->map);
@@ -34,12 +34,12 @@ int			ft_close(t_param *param)
 	free(param->vectors->pos);
 	free(param->vectors);
 	free(param->settings);
-	free(sp_data->zbuffer);
-	free(sp_data->order);
-	free(sp_data->sp_arr);
-	free(sp_data->dist);
-	free(wl_data);
-	free(sp_data);
+	free(param->sprite_data->zbuffer);
+	free(param->sprite_data->order);
+	free(param->sprite_data->sp_arr);
+	free(param->sprite_data->dist);
+	free(param->wall_data);
+	free(param->sprite_data);
 	free(param->common_data);
 	free(param->keys);
 	free(param);

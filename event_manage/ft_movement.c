@@ -6,100 +6,12 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 09:16:21 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/17 10:13:50 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/23 11:59:16 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../akira2021.h"
 #include <math.h>
-
-void		ft_forward(t_param *param, double coll)
-{
-	if (Wmap[(int)(posY - coll)][(int)((posX + (dirX * movspeed) - coll))]
-		!= '1' &&
-		Wmap[(int)(posY + coll)][(int)((posX + (dirX * movspeed) + coll))]
-		!= '1' &&
-		Wmap[(int)(posY + coll)][(int)((posX + (dirX * movspeed) - coll))]
-		!= '1' &&
-		Wmap[(int)(posY - coll)][(int)((posX + (dirX * movspeed) + coll))]
-		!= '1')
-		posX += (dirX * movspeed);
-	if (Wmap[(int)(posY + (dirY * movspeed) - coll)][(int)(posX - coll)]
-		!= '1' &&
-		Wmap[(int)(posY + (dirY * movspeed) + coll)][(int)(posX + coll)]
-		!= '1' &&
-		Wmap[(int)(posY + (dirY * movspeed) - coll)][(int)(posX + coll)]
-		!= '1' &&
-		Wmap[(int)(posY + (dirY * movspeed) + coll)][(int)(posX - coll)]
-		!= '1')
-		posY += (dirY * movspeed);
-}
-
-void		ft_backward(t_param *param, double coll)
-{
-	if (Wmap[(int)(posY - coll)][(int)((posX - (dirX * movspeed) - coll))]
-		!= '1' &&
-		Wmap[(int)(posY + coll)][(int)((posX - (dirX * movspeed) + coll))]
-		!= '1' &&
-		Wmap[(int)(posY + coll)][(int)((posX - (dirX * movspeed) - coll))]
-		!= '1' &&
-		Wmap[(int)(posY - coll)][(int)((posX - (dirX * movspeed) + coll))]
-		!= '1')
-		posX -= dirX * movspeed;
-	if (Wmap[(int)(posY - (dirY * movspeed) + coll)][(int)(posX + coll)]
-		!= '1' &&
-		Wmap[(int)(posY - (dirY * movspeed) - coll)][(int)(posX + coll)]
-		!= '1' &&
-		Wmap[(int)(posY - (dirY * movspeed) + coll)][(int)(posX - coll)]
-		!= '1' &&
-		Wmap[(int)(posY - (dirY * movspeed) - coll)][(int)(posX - coll)]
-		!= '1')
-		posY -= dirY * movspeed;
-}
-
-void		ft_strafe_right(t_param *param, double coll)
-{
-	if (Wmap[(int)(posY - coll)][(int)((posX + (planeX * movspeed) - coll))]
-		!= '1' &&
-		Wmap[(int)(posY + coll)][(int)((posX + (planeX * movspeed) + coll))]
-		!= '1' &&
-		Wmap[(int)(posY + coll)][(int)((posX + (planeX * movspeed) - coll))]
-		!= '1' &&
-		Wmap[(int)(posY - coll)][(int)((posX + (planeX * movspeed) + coll))]
-		!= '1')
-		posX += (planeX * movspeed);
-	if (Wmap[(int)(posY + (planeY * movspeed) - coll)][(int)(posX - coll)]
-		!= '1' &&
-		Wmap[(int)(posY + (planeY * movspeed) + coll)][(int)(posX + coll)]
-		!= '1' &&
-		Wmap[(int)(posY + (planeY * movspeed) - coll)][(int)(posX + coll)]
-		!= '1' &&
-		Wmap[(int)(posY + (planeY * movspeed) + coll)][(int)(posX - coll)]
-		!= '1')
-		posY += (planeY * movspeed);
-}
-
-void		ft_strafe_left(t_param *param, double coll)
-{
-	if (Wmap[(int)(posY - coll)][(int)((posX - (planeX * movspeed) - coll))]
-		!= '1' &&
-		Wmap[(int)(posY + coll)][(int)((posX - (planeX * movspeed) + coll))]
-		!= '1' &&
-		Wmap[(int)(posY + coll)][(int)((posX - (planeX * movspeed) - coll))]
-		!= '1' &&
-		Wmap[(int)(posY - coll)][(int)((posX - (planeX * movspeed) + coll))]
-		!= '1')
-		posX -= (planeX * movspeed);
-	if (Wmap[(int)(posY - (planeY * movspeed) - coll)][(int)(posX - coll)]
-		!= '1' &&
-		Wmap[(int)(posY - (planeY * movspeed) + coll)][(int)(posX + coll)]
-		!= '1' &&
-		Wmap[(int)(posY - (planeY * movspeed) - coll)][(int)(posX + coll)]
-		!= '1' &&
-		Wmap[(int)(posY - (planeY * movspeed) + coll)][(int)(posX - coll)]
-		!= '1')
-		posY -= (planeY * movspeed);
-}
 
 void		ft_movement(t_param *param)
 {
