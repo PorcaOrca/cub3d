@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:00:18 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/17 11:25:01 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/23 09:31:17 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			ft_back_color(char *str)
 	int		b;
 	int		i;
 	char	**matrix;
-	
+
 	matrix = ft_split(str, ',');
 	if (!matrix)
 		return (0xFFFFFFFF);
@@ -53,6 +53,7 @@ int			ft_back_color(char *str)
 	r = ft_atoi(matrix[0]);
 	g = ft_atoi(matrix[1]);
 	b = ft_atoi(matrix[2]);
+	ft_free_matrix(matrix);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		return (0xFFFFFFFF);
 	return (ft_color(0, r, g, b));
@@ -126,7 +127,7 @@ void		ft_element_select(t_temp *temp, char *str)
 		temp->texture4 = ft_txt_wall(str);
 	else if (*str == 'S')
 		temp->txt_sprite = ft_txt_wall(str);
-	else if (*str != '\n')
+	else if (*str != '\0')
 	{
 		temp->error++;
 		debugint(temp->error);

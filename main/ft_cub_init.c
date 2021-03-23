@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:57:41 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/17 11:18:26 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/22 09:29:31 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ char	*ft_element_parse(t_temp *temp, int fd)
 			close(fd);
 			return (NULL);
 		}
-		ft_element_select(temp, str);
+		if (*str != '1')
+			ft_element_select(temp, str);
 		if (*str == '1')
 			break ;
 		free(str);

@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 10:32:58 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/17 11:15:37 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/23 09:18:48 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,7 +277,7 @@ int			ft_get_txtcolor(t_img *img, int x, int y);
 
 // event management prototipes
 
-void		ft_close(t_param *param);
+int			ft_close(t_param *param);
 void		ft_close_img(void * mlx_ptr, t_txt *txt);
 int			ft_new_frame(t_param *param);
 void		ft_movement(t_param *param);
@@ -308,11 +308,17 @@ void		ft_settings_init(t_param *param, t_temp *temp);
 
 // utils prototipes
 int			get_next_line(int fd, char **line);
+void		ft_bmp(t_param *param);
+void		ft_file_header(t_param *param, int fd, int pad);
+void		ft_bmp_header(t_param *param, int fd);
+void		ft_bmp_data(t_param *param, int fd);
 
 // write a string cause i am lazy
 void	debug();
 void	debugstr(char *str);
 // write nbr cause i hate printf
 void	debugint(int nbr);
+int		ft_madonna(t_param *param);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:05:28 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/17 10:21:27 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/23 09:29:55 by lodovico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		ft_close_img(void *mlx_ptr, t_txt *txt)
 	free(txt);
 }
 
-void		ft_close(t_param *param)
+int			ft_close(t_param *param)
 {
 	ft_close_img(param->mlx, txt_1);
 	ft_close_img(param->mlx, txt_2);
@@ -44,4 +44,5 @@ void		ft_close(t_param *param)
 	free(param->keys);
 	free(param);
 	exit(0);
+	return (0);
 }

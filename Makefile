@@ -6,7 +6,7 @@
 #    By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/16 10:47:43 by lodovico          #+#    #+#              #
-#    Updated: 2021/03/17 10:33:40 by lodovico         ###   ########.fr        #
+#    Updated: 2021/03/22 10:57:41 by lodovico         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ MAP		=	maps/ft_element_select.c\
 			maps/ft_map_2.c
 			
 UT		=	utils/ft_get_next_line.c\
-			utils/ft_free_matrix.c
+			utils/ft_free_matrix.c\
+			utils/ft_bmp.c
 			
 DB		= 	debuggin/debug.c\
 			debuggin/debugstr.c\
@@ -77,6 +78,9 @@ lib:		$(OBJCS)
 			
 run:		$(NAME)
 			./cub3d "./maps/map_files/map_trip.cub"
+
+save:		$(NAME)
+			./cub3d "./maps/map_files/map_trip.cub" "--save"
 
 all:		$(NAME)
 
