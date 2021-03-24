@@ -8,7 +8,7 @@ EA ./img_manage/textures/texture_files/wall_trip_3.xpm
 
 WE ./img_manage/textures/texture_files/wall_trip_4.xpm
 
-S ./img_manage/textures/texture_files/floor_trip.xpm
+S ./img_manage/textures/texture_files/sprite_trip.xpm
 
 
 F 255,255,0

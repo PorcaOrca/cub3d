@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   akira2021.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lspazzin <lspazzin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 10:32:58 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/23 12:04:04 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/24 11:43:05 by lspazzin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
-# include <mlx.h>
+# include "minilibx/mlx.h"
 # include <math.h>
 # include <string.h>
 # include "libft/libft.h"

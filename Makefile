@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+         #
+#    By: lspazzin <lspazzin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/16 10:47:43 by lodovico          #+#    #+#              #
-#    Updated: 2021/03/23 12:05:09 by lodovico         ###   ########.fr        #
+#    Updated: 2021/03/24 11:59:44 by lspazzin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ SRCS	=	$(MAIN)\
 			$(UT)
 
 
-MLX_F	=	-lmlx -lXext -lX11 -lm -lbsd
+# MLX_F	=	-lmlx -lXext -lX11 -lm -lbsd
 
-# MLX_F	=	-lmlx -framework OpenGL -framework AppKit
+MLX_F	=	-lmlx -framework OpenGL -framework AppKit
 
 TM		=	img_manage/textures/ft_get_txtcolor.c\
 			img_manage/textures/ft_txt_init.c
@@ -54,28 +54,33 @@ MAIN	=	main/ft_akira2021.c\
 MAP		=	maps/ft_element_select.c\
 			maps/ft_map.c\
 			maps/ft_map_2.c
-			
+
 UT		=	utils/ft_get_next_line.c\
 			utils/ft_free_matrix.c\
 			utils/ft_bmp.c
 
 NAME	=	cub3d
 
-CFLAGS	=	-Wall -Werror -Wextra -g
+CFLAGS	=	-Wall -Werror -Wextra
 
 CC		=	gcc
 
 OBJCS	=	$(SRCS:.c=.o)
 
+	#		$(CC)  $(OBJCS) $(CFLAGS) $(MLX_F) -o -L libft libft/libft.a $(NAME)
+
+
 $(NAME):	$(OBJCS)
 			rm -rf $(NAME)
-			@$(MAKE) bonus -C ./libft
-			$(CC) $(OBJCS) $(CFLAGS) $(MLX_F) ./libft/libft.a -o $(NAME)
+			make -s -C ./libft
+			$(MAKE) -C ./minilibx
+			cp ./minilibx/libmlx.dylib ./
+			gcc $(CFLAGS) -o $(NAME) $(OBJCS) -Llibft -lft -Lminilibx -lmlx -framework OpenGL -framework AppKit
 
 lib:		$(OBJCS)
 			ar -rc akira2021.a $(OBJCS)
 			ranlib akira2021.a
-			
+
 run:		$(NAME)
 			./cub3d "./maps/map_files/map_trip.cub"
 
@@ -86,6 +91,7 @@ all:		$(NAME)
 
 clean:
 			@$(MAKE) clean -C ./libft
+			$(MAKE) clean -C ./minilibx
 			rm -f $(OBJCS)
 
 fclean:		clean

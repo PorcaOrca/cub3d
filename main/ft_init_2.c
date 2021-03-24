@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lspazzin <lspazzin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 09:45:30 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/23 10:41:15 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/24 11:45:10 by lspazzin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,18 +84,16 @@ void		ft_param_init(t_param *param, t_temp *temp)
 
 void		ft_settings_init(t_param *param, t_temp *temp)
 {
+	int x;
+	int y;
+
 	param->settings->window_size_x = temp->width;
 	param->settings->window_size_y = temp->height;
-/*
-	int		x;
-	int		y;
-
-	x = mlx_get_screen_size(param->mlx, x, y);
+	mlx_get_screen_size(param->mlx, &x, &y);
 	if (param->settings->window_size_x > x)
 		param->settings->window_size_x = x;
 	if (param->settings->window_size_y > y)
 		param->settings->window_size_y = y;
-*/	
 	param->settings->movement = 0.1;
 	param->settings->rotation = 0.05;
 	param->settings->floor_trgb = temp->floor_color;

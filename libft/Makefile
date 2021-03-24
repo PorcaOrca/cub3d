@@ -6,7 +6,7 @@
 #    By: lspazzin <lspazzin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/19 09:53:47 by lspazzin          #+#    #+#              #
-#    Updated: 2021/01/22 09:26:21 by lspazzin         ###   ########.fr        #
+#    Updated: 2021/03/24 11:30:08 by lspazzin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,13 +72,11 @@ OBJCS_BONUS	=	$(SRCS_BONUS:.c=.o)
 %.o:			%.c
 				$(CC) $(FLAGS) -c $<
 
-$(NAME):		$(OBJCS)
-				ar -rc $(NAME) $(OBJCS)
-				ranlib $(NAME)
+$(NAME):		$(OBJCS) $(OBJCS_BONUS)
+				ar -rcs $(NAME) $(OBJCS) $(OBJCS_BONUS)
 
 bonus:			$(NAME) $(OBJCS_BONUS)
-				ar -rc $(NAME) $(OBJCS_BONUS)
-				ranlib $(NAME)
+				ar -rcs $(NAME) $(OBJCS_BONUS)
 
 all:			$(NAME)
 
