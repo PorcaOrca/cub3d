@@ -6,7 +6,7 @@
 #    By: lspazzin <lspazzin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/16 10:47:43 by lodovico          #+#    #+#              #
-#    Updated: 2021/03/24 11:59:44 by lspazzin         ###   ########.fr        #
+#    Updated: 2021/03/25 10:19:35 by lspazzin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS	=	$(MAIN)\
 
 # MLX_F	=	-lmlx -lXext -lX11 -lm -lbsd
 
-MLX_F	=	-lmlx -framework OpenGL -framework AppKit
+MLX_F	=	-Lminilibx -lmlx -framework OpenGL -framework AppKit
 
 TM		=	img_manage/textures/ft_get_txtcolor.c\
 			img_manage/textures/ft_txt_init.c
@@ -69,17 +69,19 @@ OBJCS	=	$(SRCS:.c=.o)
 
 	#		$(CC)  $(OBJCS) $(CFLAGS) $(MLX_F) -o -L libft libft/libft.a $(NAME)
 
+all:		$(NAME)
 
 $(NAME):	$(OBJCS)
-			rm -rf $(NAME)
-			make -s -C ./libft
-			$(MAKE) -C ./minilibx
-			cp ./minilibx/libmlx.dylib ./
-			gcc $(CFLAGS) -o $(NAME) $(OBJCS) -Llibft -lft -Lminilibx -lmlx -framework OpenGL -framework AppKit
-
-lib:		$(OBJCS)
-			ar -rc akira2021.a $(OBJCS)
-			ranlib akira2021.a
+			@echo "remove old executable..."
+			@rm -rf $(NAME)
+			@echo "compiling libft..."
+			@make -s -C ./libft
+			@echo "compiling minilibx..."
+			@$(MAKE) -C ./minilibx
+			@cp ./minilibx/libmlx.dylib ./
+			@echo "compiling cub3d"
+			@gcc $(CFLAGS) -o $(NAME) $(OBJCS) -Llibft -lft $(MLX_F)
+			@echo "done :)"
 
 run:		$(NAME)
 			./cub3d "./maps/map_files/map_trip.cub"
@@ -87,11 +89,10 @@ run:		$(NAME)
 save:		$(NAME)
 			./cub3d "./maps/map_files/map_trip.cub" "--save"
 
-all:		$(NAME)
-
 clean:
 			@$(MAKE) clean -C ./libft
-			$(MAKE) clean -C ./minilibx
+			@$(MAKE) clean -C ./minilibx
+			rm -f libmlx.dylib
 			rm -f $(OBJCS)
 
 fclean:		clean

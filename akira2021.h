@@ -6,7 +6,7 @@
 /*   By: lspazzin <lspazzin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 10:32:58 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/24 11:43:05 by lspazzin         ###   ########.fr       */
+/*   Updated: 2021/03/25 10:05:46 by lspazzin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ typedef struct	s_param
 	t_key_stat	*keys;
 	int			sprite_num;
 	char		**map;
+	int			i;
 }				t_param;
 
 typedef struct	s_temp
