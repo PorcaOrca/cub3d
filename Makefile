@@ -6,7 +6,7 @@
 #    By: lspazzin <lspazzin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/16 10:47:43 by lodovico          #+#    #+#              #
-#    Updated: 2021/03/25 10:19:35 by lspazzin         ###   ########.fr        #
+#    Updated: 2021/03/25 11:49:35 by lspazzin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,8 @@ MAIN	=	main/ft_akira2021.c\
 
 MAP		=	maps/ft_element_select.c\
 			maps/ft_map.c\
-			maps/ft_map_2.c
+			maps/ft_map_2.c\
+			maps/ft_element_check.c
 
 UT		=	utils/ft_get_next_line.c\
 			utils/ft_free_matrix.c\
@@ -90,7 +91,7 @@ save:		$(NAME)
 			./cub3d "./maps/map_files/map_trip.cub" "--save"
 
 clean:
-			@$(MAKE) clean -C ./libft
+			@$(MAKE) fclean -C ./libft
 			@$(MAKE) clean -C ./minilibx
 			rm -f libmlx.dylib
 			rm -f $(OBJCS)

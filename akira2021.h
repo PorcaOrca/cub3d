@@ -6,7 +6,7 @@
 /*   By: lspazzin <lspazzin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 10:32:58 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/25 10:05:46 by lspazzin         ###   ########.fr       */
+/*   Updated: 2021/03/25 12:42:27 by lspazzin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,10 @@ int				ft_back_color(char *str);
 int				ft_background(char *str);
 void			ft_clean(t_temp *temp);
 void			ft_element_select(t_temp *temp, char *str);
+void			ft_element_data(t_temp *temp, char *str);
+void			ft_element_wall(t_temp *temp, char *str);
+void			ft_element_support(t_temp *temp, char *str);
+char			*ft_txt_wall(char *str);
 void			ft_spawn(t_temp *temp, char position);
 int				ft_map_check(char **matrix);
 void			ft_map_fill(char **matrix, t_temp *temp,

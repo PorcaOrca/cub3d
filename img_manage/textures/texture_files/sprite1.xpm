@@ -94,7 +94,7 @@ static char *c585f5c5d85747fdc638758d418435a0TZa6TizjFubSCBum[] = {
 "{  c #DCFBFF",
 "}  c #DBFCFF",
 "|  c #E3E0FD",
-" . c #E3E3FD",
+" . c #000000",
 ".. c #E2E5FD",
 "X. c #E1E7FD",
 "o. c #E2E6FD",

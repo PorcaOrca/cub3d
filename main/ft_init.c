@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lspazzin <lspazzin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:15:35 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/23 11:44:54 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/25 10:32:21 by lspazzin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,6 @@ t_param		*ft_init(t_temp *temp)
 	free(temp->texture2);
 	free(temp->texture3);
 	free(temp->texture4);
+	free(temp->sprite);
 	return (param);
 }

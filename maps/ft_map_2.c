@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lspazzin <lspazzin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 09:08:14 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/23 10:41:15 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/25 12:37:30 by lspazzin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void		ft_spawn(t_temp *temp, char position)
 {
+	if (position == 'N' || position == 'S' ||
+		position == 'W' || position == 'E')
+		if (temp->t_dirx || temp->t_diry)
+			temp->error++;
 	if (position == 'N')
 	{
 		temp->t_diry = -1;

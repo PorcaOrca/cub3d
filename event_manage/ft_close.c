@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_close.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lodovico <lodovico@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lspazzin <lspazzin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:05:28 by lodovico          #+#    #+#             */
-/*   Updated: 2021/03/23 10:22:06 by lodovico         ###   ########.fr       */
+/*   Updated: 2021/03/25 11:31:53 by lspazzin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int			ft_close(t_param *param)
 	free(param->sprite_data);
 	free(param->common_data);
 	free(param->keys);
+	free(param->texture);
 	free(param);
 	exit(0);
 	return (0);
